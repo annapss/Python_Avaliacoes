@@ -37,6 +37,6 @@ for i in range(tam):
 """
 for i in range(tam):
     print(matriz[i])
-
+# vet.index(max(vet)) - eu to pegando o indice da linha que apresenta maior soma
 print(f'A linha de maior soma é a {vet.index(max(vet)) + 1} onde seus elementos somam {max(vet)} ')
 

@@ -14,25 +14,27 @@ Com o SUM:
 
 matriz = []
 tam = 3
+vet = []
 maior = 0
 mlinha = 0
-
+#Vou fazer a soma igual no outro código só que usando o sum()
 for i in range(tam):
     linha = []
     for j in range(tam):
         linha.append(int(input(f'Digite um valor para [{i+1}] [{j+1}]: ')))
-
+    vet.append(sum(linha)) #soma da linha
     matriz.append(linha)
-
-for i in range(tam): #soma da linha
+#colocando a soma das linhas em um vetor, é só usar a função max()
+#Com isso, não precisamos desse for
+"""for i in range(tam): 
     if i == 0:
         maior = sum(matriz[0])
     else:
         if sum(matriz[i]) > maior:
             maior = sum(matriz[i])
             mlinha = i
-
+"""
 for i in range(tam):
     print(matriz[i])
 
-print(f'A linha de maior soma é a {mlinha+1} onde seus elementos somam {maior} ')
+print(f'A linha de maior soma é a {vet.index(max(vet)) + 1} onde seus elementos somam {max(vet)} ')
