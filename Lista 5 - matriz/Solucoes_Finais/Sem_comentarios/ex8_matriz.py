@@ -51,4 +51,4 @@ print(f'\nA turma {grp+1} possui a maior média com {maior:.2f}')
 for i in range(turmas):
     for j in range(alunos):  #verificação de que alunos tiveram média superior a de sua turma
         if mediaAlunos[i][j] > mediasTurmas[i]:
-            print(f'O aluno {i+1} da turma {j} tem a média({mediaAlunos[i][j]:.2f}) como maior que a média de sua turma.')
+            print(f'O aluno {i+1} da turma {j + 1} tem a média({mediaAlunos[i][j]:.2f}) como maior que a média de sua turma.')
