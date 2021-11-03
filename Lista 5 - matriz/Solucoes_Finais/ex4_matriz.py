@@ -28,17 +28,17 @@ for i in range(tam):
     vet.append(soma)  #soma da linha
     matriz.append(linha)
     soma = 0
-
-for i in range(tam):
+#Essa parte aqui não precisa, pode usar a função max()
+"""for i in range(tam):
     if i == 0:
         maior = vet[0]
     else:
         if vet[i] > maior:
             maior = vet[i]
             mlinha = i
-
+"""
 for i in range(tam):
     print(matriz[i])
 
-print(f'A linha de maior soma é a {mlinha+1} onde seus elementos somam {maior} ')
+print(f'A linha de maior soma é a {vet.index(max(vet)) + 1} onde seus elementos somam {max(vet)} ')
 
