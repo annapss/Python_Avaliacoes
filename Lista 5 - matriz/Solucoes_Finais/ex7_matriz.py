@@ -19,8 +19,8 @@ for i in range(m):
 
 menor = 0
 maior = 0
-posicaoma = [0]*2
-posicaome = [0]*2
+posicaoma = [0]*2 #i e j do maior
+posicaome = [0]*2 #i e j do menor
 
 for i in range(m): #verificação maior e menor elemento e sua respectiva posição
     for j in range(n):
@@ -36,7 +36,7 @@ for i in range(m): #verificação maior e menor elemento e sua respectiva posiç
                 menor = matriz[i][j]
                 posicaome[0] = i+1
                 posicaome[1] = j+1
-            elif matriz[i][j] > maior:
+            if matriz[i][j] > maior:
                 maior = matriz[i][j]
                 posicaoma[0] = i+1
                 posicaoma[1] = j+1
