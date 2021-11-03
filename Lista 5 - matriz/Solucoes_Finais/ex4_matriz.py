@@ -16,8 +16,6 @@ matriz = []
 vet = []
 tam = 3
 soma = 0
-maior = 0
-mlinha = 0
 
 for i in range(tam):
     linha = []
