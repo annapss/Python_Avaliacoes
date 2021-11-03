@@ -1,5 +1,5 @@
 """
-Grupo: Anna Paula Siqueira, Ariane Arantes, Luando Rodrigues e Maria Laura Soares
+Grupo: Anna Paula Siqueira, Ariane Arantes, Luanda Rodrigues e Maria Laura Soares
 Turma: 2BINFO
 
 8. Faça um programa que lê duas notas para cada aluno de
