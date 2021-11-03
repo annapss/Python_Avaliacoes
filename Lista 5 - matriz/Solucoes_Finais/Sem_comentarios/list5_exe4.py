@@ -1,6 +1,6 @@
 
 """
-Grupo: Anna Paula Siqueira, Ariane Arantes, Luando Rodrigues e Maria Laura Soares
+Grupo: Anna Paula Siqueira, Ariane Arantes, Luanda Rodrigues e Maria Laura Soares
 Turma: 2BINFO
 
 4. Faça um programa que leia uma matriz 3x3 de inteiros e retorne a

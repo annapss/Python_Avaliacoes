@@ -1,6 +1,6 @@
 
 """
-Grupo: Anna Paula Siqueira, Ariane Arantes, Luando Rodrigues e Maria Laura Soares
+Grupo: Anna Paula Siqueira, Ariane Arantes, Luanda Rodrigues e Maria Laura Soares
 Turma: 2BINFO
 
 5-Faça um programa que leia a ordem de uma matriz quadrada A (até

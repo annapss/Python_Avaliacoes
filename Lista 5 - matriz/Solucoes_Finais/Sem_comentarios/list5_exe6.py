@@ -1,5 +1,5 @@
 """
-Grupo: Anna Paula Siqueira da Silva, Maria Laura Soares Barbosa, Ariane Arantes dos Santos e Luanda Rodrigues da Silva
+Grupo: Anna Paula Siqueira, Maria Laura Soares, Ariane Arantes e Luanda Rodrigues
 Turma: 2BINFO
 
 Uma pista de Kart permite 10 voltas para cada um de 6 corredores. Faça um programa que leia os nomes e os 
