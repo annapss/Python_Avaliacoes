@@ -68,7 +68,7 @@ for i in range(turmas):
     for j in range(alunos):  #verificação de que alunos tiveram média superior a de sua turma
     ##if i <= 2: #media dos alunos da primeira turma
         if mediaAlunos[i][j] > mediasTurmas[i]:
-            print(f'O aluno {i+1} da turma 1 tem a média({mediaAlunos[i][j]:.2f}) como maior que a média de sua turma.')
+            print(f'O aluno {i+1} da turma {j} tem a média({mediaAlunos[i][j]:.2f}) como maior que a média de sua turma.')
     ##elif i > 2: #media dos alunos da segunda turma
         ##z +=1
         ##if mediaAlunos[i] > TURMA[1]:
