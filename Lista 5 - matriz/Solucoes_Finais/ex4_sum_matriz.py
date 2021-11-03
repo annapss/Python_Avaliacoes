@@ -15,8 +15,6 @@ Com o SUM:
 matriz = []
 tam = 3
 vet = []
-maior = 0
-mlinha = 0
 #Vou fazer a soma igual no outro código só que usando o sum()
 for i in range(tam):
     linha = []
