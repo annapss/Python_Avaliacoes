@@ -1,29 +1,27 @@
-"""
-Grupo: Anna Paula Siqueira da Silva, Luanda Rodrigues da Silva, Maria Laura Barbosa Soares e Ariane Arantes dos Santos
+'''
+Grupo: Anna Paula Siqueira, Maria Laura Barbosa, Luanda Rodrigues e Ariane Arantes
 Turma: 2BINFO
 
-Crie uma tupla preenchida com os 10 primeiros colocados da Tabela do Campeonato Brasileiro de Futebol, 
-na ordem de colocação. Depois, leia o nome de um time e imprima a sua colocação na tabela. Quando for digitado FIM, 
-o programa acaba.
+Em uma competição de salto em distância cada atleta tem direito a 3 saltos.
+O resultado do atleta será determinado pela média dos 3 saltos. 
+Você deve fazer um programa que receba o nome e as cinco distâncias alcançadas 
+pelo atleta em seus saltos e depois informe o nome e a média 
+dos saltos. O programa deve ser encerrado quando for digitado "FIM" o nome do atleta.
 
-"""
-tupla = ("atletico-mg", "palmeiras", "flamengo", "fortaleza", "bragantino", "corinthias", "internacional", "fluminense", "atletico-pr", "america-mg")
-time = ""
+'''
+tuplaMedia = ()
+tuplaNome = ()
+nome = ""
+tam = 3
 
-while(time != "FIM"):
-    time = input("Digite seu time: ").lower()
-    if(time != "fim"):
-        if(time in tupla): 
-            i = 0
-            achei = 0
-            while(i < len(tupla) and achei == 0):
-                if(tupla[i] == time):
-                    posicao = i
-                    achei = 1
-                i += 1
-            print(f"Seu time está na {posicao + 1}° posição")
-        else:
-            print("Seu time não está entre os 10 primeiros")
+while(nome != "FIM"):
+    nome = input("Digite o nome: ")
+    if(nome != "FIM"):
+        tuplaNome += (nome, )
+        soma = 0
+        for i in range(tam):
+            soma += float(input(f"Digite a nota do salto {i + 1}: "))
+        tuplaMedia += (soma / tam, )
         print()
-    else:
-        time = time.upper()
+for i in range(len(tuplaNome)):
+    print(f"O atleta {tuplaNome[i]} teve média {tuplaMedia[i]:.2f}")
