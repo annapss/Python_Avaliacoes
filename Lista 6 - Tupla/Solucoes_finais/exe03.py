@@ -13,18 +13,17 @@ time = ""
 while(time != "FIM"):
     time = input("Digite seu time: ").lower()
     if(time != "fim"):
-        achei = 0
-        i = 0
-        posicao = 0
-        while(i < len(tupla) and achei == 0):
-            if(tupla[i] == time):
-                achei = 1
-                posicao = i
-            i += 1
-        if(achei == 0):
-            print("Seu time não está entre os 10 primeiros")
-        else:
+        if(time in tupla): 
+            i = 0
+            achei = 0
+            while(i < len(tupla) and achei == 0):
+                if(tupla[i] == time):
+                    posicao = i
+                    achei = 1
+                i += 1
             print(f"Seu time está na {posicao + 1}° posição")
+        else:
+            print("Seu time não está entre os 10 primeiros")
         print()
     else:
         time = time.upper()
