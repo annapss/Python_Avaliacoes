@@ -7,3 +7,24 @@ na ordem de colocação. Depois, leia o nome de um time e imprima a sua colocaç
 o programa acaba.
 
 """
+tupla = ("atletico-mg", "palmeiras", "flamengo", "fortaleza", "bragantino", "corinthias", "internacional", "fluminense", "atletico-pr", "america-mg")
+time = ""
+
+while(time != "FIM"):
+    time = input("Digite seu time: ").lower()
+    if(time != "fim"):
+        achei = 0
+        i = 0
+        posicao = 0
+        while(i < len(tupla) and achei == 0):
+            if(tupla[i] == time):
+                achei = 1
+                posicao = i
+            i += 1
+        if(achei == 0):
+            print("Seu time não está entre os 10 primeiros")
+        else:
+            print(f"Seu time está na {posicao + 1}° posição")
+        print()
+    else:
+        time = time.upper()
