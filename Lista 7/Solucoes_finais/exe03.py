@@ -13,9 +13,9 @@ def percurso(n, i=0):
     else:
         vetor[i] = int(input("Digite um número: "))
         return percurso(tam, i + 1)
-percurso(tam)
+percurso(tam) 
 vetor = sorted(vetor)
-def decrescente(i=tam - 1):
+def decrescente(i = tam - 1):
     if(i == -1):
         return False
     else:
