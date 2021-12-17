@@ -7,3 +7,72 @@ e em seguida efetue a soma desses dois números binários. Obs.: Não é para co
 realizar a operação de soma.  Todas as operações devem ser realizadas com números binários.  
 (Não utilize estrutura de repetição, sob pena de anular a questão). 
 """
+# 1 0 1 0
+# 1 1 1
+
+digitosA = []
+digitosB = []
+resposta = []
+def bin(n, vetor):
+    if n < 1:
+        return False
+    else:
+        vetor.append(n%10)
+        bin(n//10, vetor)
+
+def soma(n, i=0, resto=0):
+    if(i == n):
+        return False
+    else:
+        if(i == n - 1):
+            if(digitosA[i] + digitosB[i] + resto == 0):
+                resposta[i] = 0
+            elif(digitosA[i] + digitosB[i] + resto == 1):
+                resposta[i] = 1
+            elif(digitosA[i] + digitosB[i] + resto == 2):
+                resposta[i] = 10
+            else:
+                resposta[i] = 11
+            resto = 0
+        else:
+            if(digitosA[i] + digitosB[i] + resto == 0):
+                resposta[i] = 0
+                resto = 0
+            elif(digitosA[i] + digitosB[i] + resto == 1):
+                resposta[i] = 1
+                resto = 0
+            elif(digitosA[i] + digitosB[i] + resto == 2):
+                resposta[i] = 0
+                resto = 1
+            else: 
+                resposta[i] = 1
+                resto = 1
+        return soma(n, i + 1, resto)
+
+def percurso(i):
+    if(i == -1):
+        return False
+    else:
+        print(f"{resposta[i]}", end="")
+        return percurso(i - 1)
+
+nA = str(input('Digite o primeiro numero: '))
+nB = str(input("Digite o segundo número: "))
+tamA = len(nA)
+tamB = len(nB)
+nA = int(nA)
+nB = int(nB)
+bin(nA, digitosA)
+bin(nB, digitosB)
+if(tamA != tamB):
+    if(tamA < tamB):
+        for i in range(0, tamB - tamA):
+            digitosA.append(0)
+    else:
+        for i in range(0, tamA - tamB):
+            digitosB.append(0)
+#print(digitosA)
+#print(digitosB)
+resposta = [0] * len(digitosA)
+soma(len(digitosA))
+percurso(len(resposta) - 1)
