@@ -56,6 +56,13 @@ def percurso(i):
         print(f"{resposta[i]}", end="")
         return percurso(i - 1)
 
+def repete(n, vetor, i = 0):
+    if i == n:
+        return False
+    else:
+        vetor.append(0)
+        repete(n, vetor, i + 1)
+
 nA = str(input('Digite o primeiro numero: '))
 nB = str(input("Digite o segundo número: "))
 tamA = len(nA)
@@ -66,11 +73,9 @@ bin(nA, digitosA)
 bin(nB, digitosB)
 if(tamA != tamB):
     if(tamA < tamB):
-        for i in range(0, tamB - tamA):
-            digitosA.append(0)
+        repete(tamB - tamA, digitosA)
     else:
-        for i in range(0, tamA - tamB):
-            digitosB.append(0)
+        repete(tamA - tamB, digitosB)
 #print(digitosA)
 #print(digitosB)
 resposta = [0] * len(digitosA)
