@@ -1,3 +1,10 @@
+"""
+Grupo: Maria Laura Barbosa Soares, Anna Paula Siqueira da Silva, Luanda Rodrigues da Silva e Ariane Arantes dos Santos
+Turma: 2BINFO
+
+Faça um programa, utilizando recursão, que leia um vetor de 100 números inteiros, e em seguida os ordene em 
+ordem decrescente de valor. (Não utilize estrutura de repetição, sob pena de anular a questão).
+"""
 tam = 5
 vetor = [0] * tam
 def percurso(n, i=0):
