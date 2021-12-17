@@ -7,12 +7,15 @@ e em seguida efetue a soma desses dois números binários. Obs.: Não é para co
 realizar a operação de soma.  Todas as operações devem ser realizadas com números binários.  
 (Não utilize estrutura de repetição, sob pena de anular a questão). 
 """
-# 1 0 1 0
-# 1 1 1
-
 digitosA = []
 digitosB = []
 resposta = []
+nA = str(input('Digite o primeiro numero: '))
+nB = str(input("Digite o segundo número: "))
+tamA = len(nA)
+tamB = len(nB)
+nA = int(nA)
+nB = int(nB)
 def bin(n, vetor):
     if n < 1:
         return False
@@ -62,13 +65,6 @@ def repete(n, vetor, i = 0):
     else:
         vetor.append(0)
         repete(n, vetor, i + 1)
-
-nA = str(input('Digite o primeiro numero: '))
-nB = str(input("Digite o segundo número: "))
-tamA = len(nA)
-tamB = len(nB)
-nA = int(nA)
-nB = int(nB)
 bin(nA, digitosA)
 bin(nB, digitosB)
 if(tamA != tamB):
