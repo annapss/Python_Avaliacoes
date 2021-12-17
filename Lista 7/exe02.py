@@ -1,4 +1,4 @@
-tam = 5
+tam = 1000
 vetor = [0] * tam
 def percurso(n, i=0):
     if(i == n):
