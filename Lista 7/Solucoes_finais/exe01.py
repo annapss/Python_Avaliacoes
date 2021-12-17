@@ -27,26 +27,23 @@ def soma(n, i=0, resto=0):
     if(i == n):
         return False
     else:
-        if(i == n - 1):
-            if(digitosA[i] + digitosB[i] + resto == 0):
-                resposta[i] = 0
-            elif(digitosA[i] + digitosB[i] + resto == 1):
-                resposta[i] = 1
-            elif(digitosA[i] + digitosB[i] + resto == 2):
-                resposta[i] = 10
-            else:
-                resposta[i] = 11
+        if(digitosA[i] + digitosB[i] + resto == 0):
+            resposta[i] = 0
             resto = 0
-        else:
-            if(digitosA[i] + digitosB[i] + resto == 0):
-                resposta[i] = 0
+        elif(digitosA[i] + digitosB[i] + resto == 1):
+            resposta[i] = 1
+            resto = 0
+        elif(digitosA[i] + digitosB[i] + resto == 2):
+            if(i == n - 1):
+                resposta[i] = 10
                 resto = 0
-            elif(digitosA[i] + digitosB[i] + resto == 1):
-                resposta[i] = 1
-                resto = 0
-            elif(digitosA[i] + digitosB[i] + resto == 2):
+            else:
                 resposta[i] = 0
                 resto = 1
+        else:
+            if(i == n - 1):
+                resposta[i] = 11
+                resto = 0
             else: 
                 resposta[i] = 1
                 resto = 1
