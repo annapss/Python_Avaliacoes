@@ -76,8 +76,6 @@ if(tamA != tamB):
         repete(tamB - tamA, digitosA)
     else:
         repete(tamA - tamB, digitosB)
-#print(digitosA)
-#print(digitosB)
 resposta = [0] * len(digitosA)
 soma(len(digitosA))
 percurso(len(resposta) - 1)
