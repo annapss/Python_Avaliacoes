@@ -5,9 +5,9 @@ Turma: 2BINFO
 Faça um programa, utilizando recursão, que leia um vetor de 100 números inteiros, e em seguida os ordene em 
 ordem decrescente de valor. (Não utilize estrutura de repetição, sob pena de anular a questão).
 """
-tam = 5
+tam = 100
 vetor = [0] * tam
-def percurso(n, i=0):
+def percurso(n, i=0): #função para percorrer o vetor e adicionar as entradas
     if(i == n):
         return False
     else:
@@ -15,7 +15,7 @@ def percurso(n, i=0):
         return percurso(tam, i + 1)
 percurso(tam) 
 vetor = sorted(vetor)
-def decrescente(i = tam - 1):
+def decrescente(i = tam - 1): # função para leitura inversa do vetor(decrescente)
     if(i == -1):
         return False
     else:

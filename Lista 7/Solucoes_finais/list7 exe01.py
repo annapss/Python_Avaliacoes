@@ -2,7 +2,7 @@
 Grupo: Maria Laura Barbosa Soares, Anna Paula Siqueira da Silva, Luanda Rodrigues da Silva e Ariane Arantes dos Santos
 Turma: 2BINFO
 
-Faça  um  programa,  utilizando  recursão,  que  leia  dos  números  binários,  com  qualquer quantidade de bits, 
+Faça  um  programa,  utilizando  recursão,  que  leia  dois  números  binários,  com  qualquer quantidade de bits,
 e em seguida efetue a soma desses dois números binários. Obs.: Não é para converter os números para decimais e 
 realizar a operação de soma.  Todas as operações devem ser realizadas com números binários.  
 (Não utilize estrutura de repetição, sob pena de anular a questão). 
@@ -10,20 +10,20 @@ realizar a operação de soma.  Todas as operações devem ser realizadas com n�
 digitosA = []
 digitosB = []
 resposta = []
-nA = str(input('Digite o primeiro numero: '))
-nB = str(input("Digite o segundo número: "))
+nA = input('Digite o primeiro numero: ')
+nB = input("Digite o segundo número: ")
 tamA = len(nA)
 tamB = len(nB)
 nA = int(nA)
 nB = int(nB)
-def bin(n, vetor):
+def bin(n, vetor):  #função para separar cada dígito do número binario e colocá-los em uma lista
     if n < 1:
         return False
     else:
         vetor.append(n%10)
         bin(n//10, vetor)
 
-def soma(n, i=0, resto=0):
+def soma(n, i=0, resto=0):  #função para somar digíto por digíto dos dois números binários
     if(i == n):
         return False
     else:
@@ -49,14 +49,14 @@ def soma(n, i=0, resto=0):
                 resto = 1
         return soma(n, i + 1, resto)
 
-def percurso(i):
+def percurso(i):  #função para printar o resultado
     if(i == -1):
         return False
     else:
         print(f"{resposta[i]}", end="")
         return percurso(i - 1)
 
-def repete(n, vetor, i = 0):
+def repete(n, vetor, i = 0):  #função para igualar o tamanho das listas que guardam separadamente os dígitos de cada número binário
     if i == n:
         return False
     else:
