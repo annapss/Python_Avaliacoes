@@ -17,11 +17,16 @@ de preços especificados pelo usuário.
 - Fim de programa 
 """
 #Primeira opção feita
-def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
+def arquivoNaMatriz(nomeArquivo, matriz):
+    arquivo = open(nomeArquivo)
+
+def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido, matriz):
     arquivoMod = open(nomeArquivoA)
     arquivoCompleto = open(nomeArquivoB)
     modelo = ""
     codigoA = ""
+    codigos = []
+    modelos = []
     linha = arquivoMod.readline()
     while(linha != "" or modelo == modeloEscolhido):
         for i in range(len(linha)):
@@ -29,6 +34,10 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
                 codigoA += linha[i]
             else:
                 modelo += linha[i]
+        codigos.append(codigoA)
+        modelos.append(modelo)
+    matriz.append(codigos)
+    matriz.append(modelos)
     if(modelo != modeloEscolhido):
         print("O modelo não existe!")
     else:
@@ -46,3 +55,5 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
             if(codigoB == codigoA):
                 total += int(qtd)
         print(f"Temos {qtd} de carros do modelo {modeloEscolhido}")
+
+def segundaOpcao(nomeArquivoA, nomeArquivoB, valorMin, valorMax):
