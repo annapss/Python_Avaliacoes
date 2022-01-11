@@ -36,7 +36,7 @@ def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz pra 
     matriz.append(codigos)
     matriz.append(modelos)
 
-#Primeira Opção feita
+#Primeira Opção
 def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
     arquivoMod = open(nomeArquivoA)
     arquivoCompleto = open(nomeArquivoB)
@@ -72,6 +72,7 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
                 total += int(qtd)
         print(f"Temos {qtd} de carros do modelo {modeloEscolhido}")
 
+#Segunda Opção
 def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
     arquivo = open(nomeArquivo)
     arquivoNaMatriz(nomeArquivo, matriz)
