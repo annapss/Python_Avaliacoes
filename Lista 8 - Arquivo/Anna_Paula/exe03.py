@@ -16,11 +16,28 @@ de preços especificados pelo usuário.
 
 - Fim de programa 
 """
-#Primeira opção feita
-def arquivoNaMatriz(nomeArquivo, matriz):
-    arquivo = open(nomeArquivo)
 
-def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido, matriz):
+def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz pra facilitar a vida
+    arquivo = open(nomeArquivo)
+    linha = arquivo.readline()
+    numero = ""
+    nome = ""
+    codigos = []
+    modelos = []
+    while(linha != ""):
+        if(linha != "Codigo,Cor,Preco,Quantidade\n"):
+            for i in range(len(linha)):
+                if(i < linha.index(",")):
+                    numero += linha[i]
+                else:
+                    nome += linha[i]
+        codigos.append(numero)
+        modelos.append(nome)
+    matriz.append(codigos)
+    matriz.append(modelos)
+
+#Primeira Opção feita
+def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
     arquivoMod = open(nomeArquivoA)
     arquivoCompleto = open(nomeArquivoB)
     modelo = ""
@@ -29,15 +46,12 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido, matriz):
     modelos = []
     linha = arquivoMod.readline()
     while(linha != "" or modelo == modeloEscolhido):
-        for i in range(len(linha)):
-            if(i < linha.index(",")):
-                codigoA += linha[i]
-            else:
-                modelo += linha[i]
-        codigos.append(codigoA)
-        modelos.append(modelo)
-    matriz.append(codigos)
-    matriz.append(modelos)
+        if(linha != "Codigo,Modelo\n"):
+            for i in range(len(linha)):
+                if(i < linha.index(",")):
+                    codigoA += linha[i]
+                else:
+                    modelo += linha[i]
     if(modelo != modeloEscolhido):
         print("O modelo não existe!")
     else:
@@ -48,6 +62,8 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido, matriz):
         while(linha != ""):
             virgulas = 0
             for i in range(len(linha)):
+                if(linha[i] == ","):
+                    virgulas += 1
                 if(virgulas == 0):
                     codigoB += linha[i]
                 if(virgulas == 3):
@@ -56,4 +72,27 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido, matriz):
                 total += int(qtd)
         print(f"Temos {qtd} de carros do modelo {modeloEscolhido}")
 
-def segundaOpcao(nomeArquivoA, nomeArquivoB, valorMin, valorMax):
+def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
+    arquivo = open(nomeArquivo)
+    arquivoNaMatriz(nomeArquivo, matriz)
+    linha = arquivo.readline()
+    codigo = ""
+    cor = ""
+    preco = ""
+    tenho = 0
+    while(linha != ""):
+        virgulas = 0
+        for i in range(len(linha)):
+            if(linha[i] == ','):
+                virgulas += 1
+            if(virgulas == 0):
+                codigo += linha[i]
+            if(virgulas == 1):
+                cor += linha[i]
+            if(virgulas == 2):
+                preco += linha[i]
+        if(float(preco) >= valorMin and float(preco) <= valorMax):
+            tenho += 1
+            print(f"O carro {matriz[1][matriz[0].index(codigo)]} na cor {cor} tem {preco} valor")
+    if(tenho == 0):
+        print("Não temos carros nessa faixa de preço")
