@@ -16,7 +16,7 @@ de preços especificados pelo usuário.
 
 - Fim de programa 
 """
-
+#Ainda não está pronto. Tem alguns bugs! :(
 def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz pra facilitar a vida
     arquivo = open(nomeArquivo)
     linha = arquivo.readline()
