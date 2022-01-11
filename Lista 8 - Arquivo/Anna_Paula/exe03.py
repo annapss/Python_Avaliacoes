@@ -97,3 +97,21 @@ def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
             print(f"O carro {matriz[1][matriz[0].index(codigo)]} na cor {cor} tem {preco} valor")
     if(tenho == 0):
         print("Não temos carros nessa faixa de preço")
+
+print("Seja bem-vindo ao programa de consultas!\n")
+print("Escolha uma opção:")
+print("Digite 1 - Consulta da quantidade disponível de um determinado modelo de carro")
+print("Digite 2 - Consulta de modelos disponíveis de uma determinada cor e entre uma determinada faixa de preços")
+print("Digite FIM - Finalizar programa\n")
+
+consulta = ""
+matrizArqA = []
+while(consulta != 'FIM'):
+    consulta = input("Digite a opção desejada: ")
+    if(consulta == '1'):
+        modelo = input("Digite o modelo desejado: ")
+        primeiraOpcao("arq1.txt", 'arq2.txt', modelo)
+    elif(consulta == '2'):
+        valorMin = input("Digite o valor mínimo: ")
+        valorMax = input("Digite o valor máximo: ")
+        segundaOpcao("arq2.txt", matrizArqA, valorMin, valorMax)
