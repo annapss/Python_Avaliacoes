@@ -56,8 +56,8 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
                 elif(i > linha.index(",")):
                     if(linha[i] != '\n'):
                         modelo += linha[i]
-            print(f"Modelo: {modelo}")
-            print(f"Modelo Escolhido: {modeloEscolhido}")
+            #print(f"Modelo: {modelo}")
+            #print(f"Modelo Escolhido: {modeloEscolhido}")
         linha = arquivoMod.readline()
     if(modelo != modeloEscolhido):
         print("Modelo inexistente!")
@@ -80,8 +80,8 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
                         if(virgulas == 3):
                             qtd += linha[i]
                 if(codigoB == codigoA):
-                    print(f"CodigoA: {codigoA}")
-                    print(f"CodigoB: {codigoB}")
+                    #print(f"CodigoA: {codigoA}")
+                    #print(f"CodigoB: {codigoB}")
                     total += int(qtd)
             linha = arquivoCompleto.readline()
         print(f"Temos {total} de carros do modelo {modeloEscolhido}")
@@ -91,7 +91,7 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
 #Segunda Opção
 def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
     arquivo = open(nomeArquivo)
-    arquivoNaMatriz(nomeArquivo, matriz)
+    arquivoNaMatriz('arq1.txt', matriz)
     linha = arquivo.readline()
     codigo = ""
     cor = ""
@@ -100,6 +100,9 @@ def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
     while(linha != ""):
         if(linha != "Codigo,Cor,Preco,Quantidade\n"):
             virgulas = 0
+            codigo = ""
+            cor = ""
+            preco = ""
             for i in range(len(linha)):
                 if(linha[i] == ','):
                     virgulas += 1
@@ -112,7 +115,7 @@ def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
                         preco += linha[i]
             if(float(preco) >= valorMin and float(preco) <= valorMax):
                 tenho += 1
-                print(f"O carro {matriz[1][matriz[0].index(codigo)]} na cor {cor} tem {preco} valor")
+                print(f"O carro {matriz[1][matriz[0].index(codigo)]} na cor {cor} tem valor {preco}")
         linha = arquivo.readline()
     if(tenho == 0):
         print("Não temos carros nessa faixa de preço")
@@ -131,7 +134,9 @@ while(consulta != 'FIM'):
     if(consulta == '1'):
         modelo = input("Digite o modelo desejado: ")
         primeiraOpcao("arq1.txt", 'arq2.txt', modelo)
+        print()
     elif(consulta == '2'):
-        valorMin = input("Digite o valor mínimo: ")
-        valorMax = input("Digite o valor máximo: ")
+        valorMin = float(input("Digite o valor mínimo: "))
+        valorMax = float(input("Digite o valor máximo: "))
         segundaOpcao("arq2.txt", matrizArqA, valorMin, valorMax)
+        print()
