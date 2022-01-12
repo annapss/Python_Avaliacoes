@@ -16,12 +16,11 @@ de preços especificados pelo usuário.
 
 - Fim de programa 
 """
-#Ainda não está pronto. Tem alguns bugs! :(
-def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz pra facilitar a vida
+def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz para facilitar a vida
     arquivo = open(nomeArquivo)
     linha = arquivo.readline()
-    codigos = []
-    modelos = []
+    codigos = [] #Linha de códigos
+    modelos = [] #Linha de modelos
     while(linha != ""):
         if(linha != "Codigo,Modelo\n"):
             numero = ""
@@ -43,30 +42,25 @@ def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz pra 
 def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
     arquivoMod = open(nomeArquivoA)
     arquivoCompleto = open(nomeArquivoB)
-    modelo = ""
-    codigoA = ""
     linha = arquivoMod.readline()
-    while(linha != "" and modelo != modeloEscolhido):
+    while(linha != "" and modelo != modeloEscolhido): #Pegando as informacoes do arquivo 'arq1.txt'
         modelo = ""
         codigoA = ""
         if(linha != "Codigo,Modelo\n"):
             for i in range(len(linha)):
+                #Virgulas mostram quais informacoes estão sendo lidas
                 if(i < linha.index(",")):
                     codigoA += linha[i]
                 elif(i > linha.index(",")):
                     if(linha[i] != '\n'):
                         modelo += linha[i]
-            #print(f"Modelo: {modelo}")
-            #print(f"Modelo Escolhido: {modeloEscolhido}")
         linha = arquivoMod.readline()
     if(modelo != modeloEscolhido):
         print("Modelo inexistente!")
     else:
         linha = arquivoCompleto.readline()
         total = 0
-        while(linha != ""):
-            codigoB = ""
-            qtd = ""
+        while(linha != ""): #Pegando informacoes de 'arq2.txt'
             if(linha != "Codigo,Cor,Preco,Quantidade\n"):
                 virgulas = 0
                 codigoB = ""
@@ -79,9 +73,7 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
                             codigoB += linha[i]
                         if(virgulas == 3):
                             qtd += linha[i]
-                if(codigoB == codigoA):
-                    #print(f"CodigoA: {codigoA}")
-                    #print(f"CodigoB: {codigoB}")
+                if(codigoB == codigoA): #Encontrando o modelo e adicionando sua quantidade
                     total += int(qtd)
             linha = arquivoCompleto.readline()
         print(f"Temos {total} de carros do modelo {modeloEscolhido}")
@@ -91,20 +83,17 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
 #Segunda Opção
 def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
     arquivo = open(nomeArquivo)
-    arquivoNaMatriz('arq1.txt', matriz)
+    arquivoNaMatriz('arq1.txt', matriz) #Funcao que coloca as informacoes de 'arq1.txt' em uma matriz
     linha = arquivo.readline()
-    codigo = ""
-    cor = ""
-    preco = ""
     tenho = 0
-    while(linha != ""):
+    while(linha != ""): #Pegando informacoes do 'arq2.txt'
         if(linha != "Codigo,Cor,Preco,Quantidade\n"):
             virgulas = 0
             codigo = ""
             cor = ""
             preco = ""
             for i in range(len(linha)):
-                if(linha[i] == ','):
+                if(linha[i] == ','): #Virgulas indicam qual informacao está sendo lida
                     virgulas += 1
                 if(linha[i] != '\n' and linha[i] != ","):
                     if(virgulas == 0):
@@ -113,7 +102,8 @@ def segundaOpcao(nomeArquivo, matriz, valorMin, valorMax):
                         cor += linha[i]
                     if(virgulas == 2):
                         preco += linha[i]
-            if(float(preco) >= valorMin and float(preco) <= valorMax):
+            if(float(preco) >= valorMin and float(preco) <= valorMax): 
+                #Confere se o preco do carro está dentro da faixa de preco escolhida
                 tenho += 1
                 print(f"O carro {matriz[1][matriz[0].index(codigo)]} na cor {cor} tem valor {preco}")
         linha = arquivo.readline()
@@ -127,15 +117,16 @@ print("Digite 1 - Consulta da quantidade disponível de um determinado modelo de
 print("Digite 2 - Consulta de modelos disponíveis de uma determinada cor e entre uma determinada faixa de preços")
 print("Digite FIM - Finalizar programa\n")
 
+#Programa Principal
 consulta = ""
 matrizArqA = []
 while(consulta != 'FIM'):
     consulta = input("Digite a opção desejada: ")
-    if(consulta == '1'):
+    if(consulta == '1'): #Primeira opcao de consulta
         modelo = input("Digite o modelo desejado: ")
         primeiraOpcao("arq1.txt", 'arq2.txt', modelo)
         print()
-    elif(consulta == '2'):
+    elif(consulta == '2'): #Segunda opcao de consulta
         valorMin = float(input("Digite o valor mínimo: "))
         valorMax = float(input("Digite o valor máximo: "))
         segundaOpcao("arq2.txt", matrizArqA, valorMin, valorMax)
