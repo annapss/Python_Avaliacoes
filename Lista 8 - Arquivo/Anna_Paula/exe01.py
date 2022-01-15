@@ -25,9 +25,9 @@ def nomeAleatorio(nLetras): #Nomes dos candidatos
     return nome
 def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
     arquivo = open(nomeArquivo, 'w')
-    arquivo.write("Inscricao,Nome,Renda")
+    arquivo.write("Inscricao,Nome,Renda\n")
     for i in range(1, nCandidatos + 1):
-        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100))
+        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100) + '\n')
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
@@ -35,12 +35,33 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     discursivas = ['']
     medias = ['']
     for i in range(1,nCandidatos + 1):
-        objetivas.append(str(random.randint(0, 1000) /100))
-        discursivas.append(str(random.randint(0, 1000) /100))
-        medias.append((str(objetivas[i] + discursivas[i]) / 2)) #Talvez tenha arrendondar para 2 casas decimais
+        objetivas.append(random.randint(0, 1000) /100)
+        discursivas.append(random.randint(0, 1000) /100)
+        medias.append((objetivas[i] + discursivas[i]) / 2) #Talvez tenha arrendondar para 2 casas decimais
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
+
+def empate(maior, matriz):
+    i = matriz.index(maior)
+    inscricao = i
+    maiorDiscursiva = matriz[1][i]
+    while()
+def defineClassificacao(matriz, nCandidatos, nomeArquivo):
+    arquivo = open(nomeArquivo, 'w')
+    arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva")
+    i = 0
+    while(matriz[2].count(0) != nCandidatos):
+        maiorMedia = max(matriz[2])
+        if(matriz[2].count(maiorMedia) != 1):
+            empate(maiorMedia)
+        else:
+            inscricao = str(matriz[2].index(maiorMedia))
+            arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + "," + 
+            str(matriz[0][int(inscricao)]) + "," + str(matriz[0][int(inscricao)]) + '\n')
+            matriz[2][int(inscricao)] = 0
+    arquivo.close()    
+
 
 notas = []
 nVagas = random.randint(20, 100)
