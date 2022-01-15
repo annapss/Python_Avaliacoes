@@ -41,6 +41,7 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
+ #Função de empate ainda não está pronta :(
 
 def empate(maior, matriz):
     i = matriz.index(maior)
