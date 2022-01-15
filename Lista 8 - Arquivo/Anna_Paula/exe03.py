@@ -43,7 +43,7 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
     arquivoMod = open(nomeArquivoA)
     arquivoCompleto = open(nomeArquivoB)
     linha = arquivoMod.readline()
-    while(linha != "" and modelo != modeloEscolhido): #Pegando as informacoes do arquivo 'arq1.txt'
+    while(linha != "" and modelo.lower() != modeloEscolhido.lower()): #Pegando as informacoes do arquivo 'arq1.txt'
         modelo = ""
         codigoA = ""
         if(linha != "Codigo,Modelo\n"):
