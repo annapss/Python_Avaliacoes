@@ -42,6 +42,11 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     notas.append(discursivas)
     notas.append(medias)
 
+notas = []
+nVagas = random.randint(20, 100)
+nCandidatos = random.randint(nVagas, 500)
+
+escreveArq1('arqCandidatos.txt', nCandidatos)
 """
 Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
 de usar o max(), vemos quantas vezes esse valor aparece na coluna das médias usando o count(). Se ele mostrar que tem
