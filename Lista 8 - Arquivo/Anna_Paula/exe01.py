@@ -41,3 +41,13 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
+
+"""
+Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
+de usar o max(), vemos quantas vezes esse valor aparece na coluna das médias usando o count(). Se ele mostrar que tem
+mais de um, chamamos uma função que ainda será criada que seria chamada de empate(). Nela, saberíamos quem tem a maior
+nota na prova discursiva.
+Na função empate, podemos ir usando o index nesse valor para encontrar a posição desses valores e também achar a maior
+nota discursiva
+Depois iríamos escrever no arquivo 2.
+"""
