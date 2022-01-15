@@ -1,4 +1,4 @@
-Codigo,Cor,Preco,Quantidade'
+Codigo,Cor,Preco,Quantidade
 0001,Branco,120000,3
 0002,Branco,40000,4
 0003,Branco,38000,1

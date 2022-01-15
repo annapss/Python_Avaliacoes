@@ -23,8 +23,8 @@ def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz para
     modelos = [] #Linha de modelos
     while(linha != ""):
         if(linha != "Codigo,Modelo\n"):
-            numero = ""
-            nome = ""
+            numero = "" #codigo
+            nome = "" #modelo
             for i in range(len(linha)):
                 if(i < linha.index(",")):
                     numero += linha[i]
@@ -40,8 +40,8 @@ def arquivoNaMatriz(nomeArquivo, matriz): #Colocando arq1.txt em uma matriz para
 
 #Primeira Opção
 def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
-    arquivoMod = open(nomeArquivoA)
-    arquivoCompleto = open(nomeArquivoB)
+    arquivoMod = open(nomeArquivoA) #Abrindo arquivo 1
+    arquivoCompleto = open(nomeArquivoB) #Abrind arquivo 2
     linha = arquivoMod.readline()
     while(linha != "" and modelo.lower() != modeloEscolhido.lower()): #Pegando as informacoes do arquivo 'arq1.txt'
         modelo = ""
@@ -58,7 +58,7 @@ def primeiraOpcao(nomeArquivoA, nomeArquivoB, modeloEscolhido):
     if(modelo != modeloEscolhido):
         print("Modelo inexistente!")
     else:
-        linha = arquivoCompleto.readline()
+        linha = arquivoCompleto.readline() #Arquivo 2
         total = 0
         while(linha != ""): #Pegando informacoes de 'arq2.txt'
             if(linha != "Codigo,Cor,Preco,Quantidade\n"):
