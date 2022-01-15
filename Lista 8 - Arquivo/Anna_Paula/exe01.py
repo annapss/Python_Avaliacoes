@@ -47,7 +47,8 @@ def empate(maior, matriz):
     i = matriz.index(maior)
     inscricao = i
     maiorDiscursiva = matriz[1][i]
-    while()
+    while():
+        
 def defineClassificacao(matriz, nCandidatos, nomeArquivo):
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva")

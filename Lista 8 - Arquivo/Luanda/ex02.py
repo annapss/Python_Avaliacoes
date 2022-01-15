@@ -9,8 +9,9 @@ e a quantidade disponível para a venda do modelo. Todos os dados serão inserid
 """
 
 def escrevenumaleatorios1(nomeArquivo):
-    arquivo = (open, nomeArquivo, 'w')
+    arquivo = open(nomeArquivo, 'w')
     arquivo.write("Codigo,Modelo""\n")
+    codigo = ""
     while(codigo != "FIM"):
         codigo = input("Digite o código do carro: ")
         if(codigo != "FIM"):
@@ -20,14 +21,14 @@ def escrevenumaleatorios1(nomeArquivo):
 
 def escrevenumaleatorios2(nomeArquivo):
     arquivo = (open, nomeArquivo, 'w')
-    arquivo.write("Codigo,Cor,Preço,Quantidade""\n")
+    arquivo.write("Codigo,Cor,Preço,Quantidade\n")
     while(codigo != "FIM"):
         codigo = input("Digite o código do carro: ")
         if(codigo != "FIM"):
             cor = input("Digite a cor: ")
-            preço = input("Digite o preço: ")
+            preco = input("Digite o preço: ")
             quant = input("Dgite a quantidade: ")
-            arquivo.write(codigo + "," + cor + "," + preço + "," + quant +'\n')
+            arquivo.write(codigo + "," + cor + "," + preco + "," + quant +'\n')
     arquivo.close()
 
 escrevenumaleatorios1("arquivo1.txt")

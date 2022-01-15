@@ -20,9 +20,11 @@ Se houver empates, o desempate será dado pela maior nota discursiva.
 
 import random
 
-def inscriçõesaleatorias(qtdnumeros):
+def inscriçõesaleatorias(qtdnumeros, nomeArquivo):
+    arquivo = open(nomeArquivo, 'w')
     for i in range(qtdnumeros):
-        print(random.randit(0,10))
+        arquivo.write(random.randint(0,10))
+        print(random.randint(0,10))
 
-inscriçõesaleatorias(10)
+inscriçõesaleatorias(10, 'teste.txt')
 
