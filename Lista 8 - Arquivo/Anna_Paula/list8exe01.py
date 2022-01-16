@@ -31,14 +31,14 @@ def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
-    objetivas = [-1, 7, 5, 2, 9, 8.5] #Valor na posicao 0 em cada vetor
-    discursivas = [-1, 8.5, 2, 2, 8, 7]
+    objetivas = [-1] #Valor na posicao 0 em cada vetor
+    discursivas = [-1]
     medias = [-1]
-    """for i in range(1,nCandidatos + 1):
+    for i in range(1,nCandidatos + 1):
         objetivas.append(random.randint(0, 1000) /100)
         discursivas.append(random.randint(0, 1000) /100)
         notaFinal = (objetivas[i] + discursivas[i]) / 2
-        medias.append(round(notaFinal,2)) #Talvez tenha arrendondar para 2 casas decimais"""
+        medias.append(round(notaFinal,2)) #Talvez tenha arrendondar para 2 casas decimais
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
@@ -49,11 +49,11 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
 def empate(maior, matriz): #Retorna o número de inscrição de quem irá ficar na maior posição
     inscricao = matriz[2].index(maior)
     maiorDiscursiva = matriz[1][inscricao]
-    copiaMedias = [-1]
+    copiaMedias = []
     for i in range(len(matriz[2])):
         copiaMedias.append(matriz[2][i])
     while(copiaMedias.count(maior) != 0):
-        i = matriz[2].index(maior)
+        i = copiaMedias.index(maior)
         if(matriz[1][i] > maiorDiscursiva):
             maiorDiscursiva = matriz[1][i]
             inscricao = i
@@ -80,7 +80,7 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo): #Faz a classificaçã
 
 notas = []
 nVagas = random.randint(20, 100)
-nCandidatos = 5 #random.randint(nVagas, 500)
+nCandidatos = random.randint(nVagas, 500)
 
 escreveArq1('arqCandidatos.txt', nCandidatos)
 notas = defineNotas(notas, nCandidatos)
