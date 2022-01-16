@@ -23,10 +23,25 @@ def nomeAleatorio(nLetras): #Nomes dos candidatos
         else:
             nome += consoantes[random.randint(0, len(consoantes) - 1)]
     return nome
-def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
+def escreveArq1(nomeArquivo, nCandidatos, rendaCotistas, rendaNcotistas): #Arquivo 1 pronto! :)
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Inscricao,Nome,Renda\n")
+    inscricaoC = []
+    rendaC = []
+    rendaA = []
+    inscricaoA = []
     for i in range(1, nCandidatos + 1):
+        renda = random.randint(50000, 500000) / 100
+        if(renda <= 1000):
+            inscricaoC.append(i)
+            rendaC.append(renda)
+        elif(renda > 1000):
+            inscricaoA.append(i)
+            rendaA.append(renda)
+        rendaCotistas.append(inscricaoC)
+        rendaCotistas.append(rendaC)
+        rendaNcotistas.append(inscricaoA)
+        rendaNcotistas.append(rendaA)
         arquivo.write("0"*(5 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100) + '\n')
     arquivo.close()
 
@@ -79,10 +94,13 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo): #Faz a classificaçã
 
 
 notas = []
+rendaCotistas = []
+rendaNcotistas = []
 nVagas = random.randint(20, 100)
 nCandidatos = random.randint(nVagas, 500)
+passei = [False] * nCandidatos
 
-escreveArq1('arqCandidatos.txt', nCandidatos)
+escreveArq1('arqCandidatos.txt', nCandidatos, rendaCotistas, rendaNcotistas)
 notas = defineNotas(notas, nCandidatos)
 defineClassificacao(notas, nCandidatos, 'classificacao.txt')
 """
