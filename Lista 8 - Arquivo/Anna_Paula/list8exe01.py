@@ -31,9 +31,9 @@ def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
-    objetivas = [''] #Valor na posicao 0 em cada vetor
-    discursivas = ['']
-    medias = ['']
+    objetivas = [-1] #Valor na posicao 0 em cada vetor
+    discursivas = [-1]
+    medias = [-1]
     for i in range(1,nCandidatos + 1):
         objetivas.append(random.randint(0, 1000) /100)
         discursivas.append(random.randint(0, 1000) /100)
@@ -41,28 +41,39 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
+    return notas
  
  #Função de empate ainda não está pronta :(
 
-def empate(maior, matriz):
-    i = matriz.index(maior)
-    inscricao = i
-    maiorDiscursiva = matriz[1][i]
-    while():
+def empate(maior, matriz): #Retorna o número de inscrição de quem irá ficar na maior posição
+    inscricao = matriz[2].index(maior)
+    maiorDiscursiva = matriz[1][inscricao]
+    copiaMedias = [-1]
+    for i in range(len(matriz[2])):
+        copiaMedias.append(matriz[2][i])
+    while(copiaMedias.count(maior) != 0):
+        i = matriz[2].index(maior)
+        if(matriz[1][i] > maiorDiscursiva):
+            maiorDiscursiva = matriz[1][i]
+            inscricao = i
+        copiaMedias[i] = -1
+    return inscricao
 
-def defineClassificacao(matriz, nCandidatos, nomeArquivo):
+def defineClassificacao(matriz, nCandidatos, nomeArquivo): #Faz a classificação e já escreve no arquivo 2
     arquivo = open(nomeArquivo, 'w')
-    arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva")
+    arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva\n")
     i = 0
-    while(matriz[2].count(0) != nCandidatos):
+    while(matriz[2].count(-1) != nCandidatos):
+        i += 1
         maiorMedia = max(matriz[2])
         if(matriz[2].count(maiorMedia) != 1):
-            empate(maiorMedia)
+            inscricao = empate(maiorMedia, matriz)
         else:
-            inscricao = str(matriz[2].index(maiorMedia))
-            arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + "," + 
-            str(matriz[0][int(inscricao)]) + "," + str(matriz[0][int(inscricao)]) + '\n')
-            matriz[2][int(inscricao)] = 0
+            inscricao = matriz[2].index(maiorMedia)
+        inscricao = str(inscricao)
+        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + "," + 
+        str(matriz[0][int(inscricao)]) + "," + str(matriz[0][int(inscricao)]) + '\n')
+        matriz[2][int(inscricao)] = -1
     arquivo.close()    
 
 
@@ -71,6 +82,8 @@ nVagas = random.randint(20, 100)
 nCandidatos = random.randint(nVagas, 500)
 
 escreveArq1('arqCandidatos.txt', nCandidatos)
+notas = defineNotas(notas, nCandidatos)
+defineClassificacao(notas, nCandidatos, 'classificacao.txt')
 """
 Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
 de usar o max(), vemos quantas vezes esse valor aparece na coluna das médias usando o count(). Se ele mostrar que tem
