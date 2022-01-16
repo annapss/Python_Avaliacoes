@@ -17,17 +17,17 @@ def nomeAleatorio(nLetras): #Nomes dos candidatos
     vogais = ['a', 'e', 'i', 'o', 'u']
     consoantes = ['b', 'c', 'd' , 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'x', 'z']
     nome = ''
-    for i in range(nLetras):
+    for i in range(nLetras): #v + c + v + c - xoxo
         if(i % 2 == 0):
-            nome += random.randint(0, len(vogais) - 1)
+            nome += vogais[random.randint(0, len(vogais) - 1)]
         else:
-            nome += random.randint(0, len(consoantes) - 1)
+            nome += consoantes[random.randint(0, len(consoantes) - 1)]
     return nome
 def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Inscricao,Nome,Renda\n")
     for i in range(1, nCandidatos + 1):
-        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100) + '\n')
+        arquivo.write("0"*(5 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100) + '\n')
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
@@ -41,6 +41,7 @@ def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e coloca
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
+ 
  #Função de empate ainda não está pronta :(
 
 def empate(maior, matriz):
@@ -48,7 +49,7 @@ def empate(maior, matriz):
     inscricao = i
     maiorDiscursiva = matriz[1][i]
     while():
-        
+
 def defineClassificacao(matriz, nCandidatos, nomeArquivo):
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva")
