@@ -1,4 +1,4 @@
-discursivas = [-1,5, 2, 1, 4]
+"""discursivas = [-1,5, 2, 1, 4]
 vetor = [-1,8.5, 5, 5, 8.5]
 print(f"Vetor: {vetor}")
 maiorDiscursiva = 0
@@ -14,3 +14,6 @@ print(f"Inscricao: {inscricao}")
 #print(f"Posição do primeiro 8.5: {vetor.index(8.5)}")
 #print(f"{vetor[1:4]}")
 #print(f"posição do segundo 8.5: {vetor.index(8.5)}")
+"""
+a = 2.555555
+print(round(a,2))

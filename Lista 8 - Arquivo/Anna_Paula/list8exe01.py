@@ -31,13 +31,14 @@ def escreveArq1(nomeArquivo, nCandidatos): #Arquivo 1 pronto! :)
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
-    objetivas = [-1] #Valor na posicao 0 em cada vetor
-    discursivas = [-1]
+    objetivas = [-1, 7, 5, 2, 9, 8.5] #Valor na posicao 0 em cada vetor
+    discursivas = [-1, 8.5, 2, 2, 8, 7]
     medias = [-1]
-    for i in range(1,nCandidatos + 1):
+    """for i in range(1,nCandidatos + 1):
         objetivas.append(random.randint(0, 1000) /100)
         discursivas.append(random.randint(0, 1000) /100)
-        medias.append((objetivas[i] + discursivas[i]) / 2) #Talvez tenha arrendondar para 2 casas decimais
+        notaFinal = (objetivas[i] + discursivas[i]) / 2
+        medias.append(round(notaFinal,2)) #Talvez tenha arrendondar para 2 casas decimais"""
     notas.append(objetivas)
     notas.append(discursivas)
     notas.append(medias)
@@ -57,13 +58,14 @@ def empate(maior, matriz): #Retorna o número de inscrição de quem irá ficar 
             maiorDiscursiva = matriz[1][i]
             inscricao = i
         copiaMedias[i] = -1
+    copiaMedias.clear()
     return inscricao
 
 def defineClassificacao(matriz, nCandidatos, nomeArquivo): #Faz a classificação e já escreve no arquivo 2
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva\n")
     i = 0
-    while(matriz[2].count(-1) != nCandidatos):
+    while(matriz[2].count(-1) != nCandidatos + 1):
         i += 1
         maiorMedia = max(matriz[2])
         if(matriz[2].count(maiorMedia) != 1):
@@ -71,15 +73,14 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo): #Faz a classificaçã
         else:
             inscricao = matriz[2].index(maiorMedia)
         inscricao = str(inscricao)
-        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + "," + 
-        str(matriz[0][int(inscricao)]) + "," + str(matriz[0][int(inscricao)]) + '\n')
+        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + inscricao + "," + str(matriz[0][int(inscricao)]) + "," + str(matriz[1][int(inscricao)]) + '\n')
         matriz[2][int(inscricao)] = -1
     arquivo.close()    
 
 
 notas = []
 nVagas = random.randint(20, 100)
-nCandidatos = random.randint(nVagas, 500)
+nCandidatos = 5 #random.randint(nVagas, 500)
 
 escreveArq1('arqCandidatos.txt', nCandidatos)
 notas = defineNotas(notas, nCandidatos)
