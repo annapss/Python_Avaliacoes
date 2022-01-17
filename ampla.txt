@@ -1,3 +1,3 @@
 Nome,Inscricao,Classificacao Inicial
-olatexaqof,00002,0002
-ozulixe,00004,0003
+udaxulo,00002,0002
+oturu,00004,0005
