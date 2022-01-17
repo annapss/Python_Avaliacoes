@@ -159,6 +159,20 @@ def escreveAmpla(nomeArquivo, vetor):
         classificacaoInicial = pegaClassificacao(parteInscricao + inscricao, 'classificacao.txt')
         arquivo.write(nome + "," + "0"*(5 - len(inscricao)) + inscricao + "," + "0"*(4 - len(classificacaoInicial)) + classificacaoInicial + '\n')
     arquivo.close()
+#Era o que eu tava fazendo pra ordenar mas está entrando em um loop infinito e eu não sei por que
+"""def escreveCotistas(matriz, nomeArquivo):
+    arquivo = open(nomeArquivo, 'w')
+    while(matriz[3].count(501) != len(matriz[3]) - 1):
+        menor = min(matriz[3][1:len(matriz[3]) - 1])
+        posicaoCandidato = matriz[3].index(menor) + 1
+        inscricao = str(matriz[3][posicaoCandidato])
+        nomeCandidato = str(matriz[0][posicaoCandidato])
+        classInicial = str(matriz[1][posicaoCandidato])
+        classFinal = str(matriz[2][posicaoCandidato])
+        arquivo.write(inscricao + "," + nomeCandidato + "," + "0"*(4 - len(classInicial)) + classInicial + "," + "0"*(4 - len(classFinal)) + classFinal + "\n")
+        matriz[3][posicaoCandidato] = 501
+    arquivo.close()
+"""
 
 notas = []
 notasCotistas = [] #Cotistas
@@ -171,6 +185,7 @@ notas = defineNotas(notas, nCandidatos)
 escreveArq1('arqCandidatos.txt', nCandidatos, notasCotistas, inscricoesAmpla, notas)
 defineClassificacao(notas, nCandidatos, 'classificacao.txt', 3, 0, 1)
 matrizCotistas = defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 1, 0, 2) #Faz a classificacao Final
+#escreveCotistas(matrizCotistas, 'classificacaoCotistas.txt')
 defineClassificacao(matrizCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 3, 3, 3) #Escreve no arquivo em ordem de inscricao
 escreveAmpla("ampla.txt", inscricoesAmpla)
 """
