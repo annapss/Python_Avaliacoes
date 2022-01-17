@@ -132,7 +132,6 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, ti
         elif(tipo == 2): #Faz a matriz com a classificao (não está em ordem de inscricao)
             parteInscricao = "0"*(5 - len(inscricao))
             nome.append(pegaNome(parteInscricao + inscricao, 'arqCandidatos.txt'))
-            parteInscricao = "0"*(4 - len(inscricao))
             classificacaoInicial.append(pegaClassificacao(parteInscricao + inscricao, 'classificacao.txt'))
             classificacaoFinal.append(i)
             numeroInscricao.append(int(inscricao))
@@ -153,16 +152,12 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, ti
 def escreveAmpla(nomeArquivo, vetor):
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Nome,Inscricao,Classificacao Inicial\n")
-    print(vetor)
-    print(len(vetor))
-    for i in range(1,len(vetor) + 1):
+    for i in range(1,len(vetor)):
         inscricao = str(vetor[i])
         parteInscricao = "0"*(5 - len(inscricao))
         nome = pegaNome(parteInscricao + inscricao, 'arqCandidatos.txt')
-        parteInscricao = "0"*(4 - len(vetor))
         classificacaoInicial = pegaClassificacao(parteInscricao + inscricao, 'classificacao.txt')
-        print(classificacaoInicial)
-        arquivo.write(nome + "," + parteInscricao + inscricao + "," + "0"*(4 - len(classificacaoInicial)) + classificacaoInicial + '\n')
+        arquivo.write(nome + "," + "0"*(5 - len(inscricao)) + inscricao + "," + "0"*(4 - len(classificacaoInicial)) + classificacaoInicial + '\n')
     arquivo.close()
 
 notas = []
