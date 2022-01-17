@@ -1,4 +1,4 @@
 Nome,Classificacao Inicial,Classificacao Final
-5,azefavojol,0001,0001
-3,ovofa,0003,0003
-1,irudenesif,0001,0002
+5,oremaruc,0005,0003
+3,avofus,0001,0001
+1,osoqemi,0004,0002
