@@ -29,20 +29,27 @@ def escreveArq1(nomeArquivo, nCandidatos, notasCotistas, notasNcotistas, notas):
     inscricaoC = [-1]
     notasC = [-1]
     notasA = [-1]
+    discursivaC = [-1]
     inscricaoA = [-1]
     for i in range(1, nCandidatos + 1):
-        renda = random.randint(50000, 500000) / 100
+        #Fiz esse if só para terem candidatos cotistas e não cotistas
+        if(i % 2 == 0):
+            renda = random.randint(100100, 500000) / 100 #não cotista
+        else: 
+            renda = random.randint(50000, 100000) / 100 #cotista
         if(renda <= 1000):
             inscricaoC.append(i)
-            notasC.append(notas[2][i])
+            notasC.append(notas[3][i])
+            discursivaC.append(notas[2][i])
         elif(renda > 1000):
             inscricaoA.append(i)
-            notasA.append(notas[2][i])
-        notasCotistas.append(inscricaoC) #0
-        notasCotistas.append(notasC) #1
-        notasNcotistas.append(inscricaoA) #0
-        notasNcotistas.append(notasA) #1
-        arquivo.write("0"*(5 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(random.randint(50000, 500000) / 100) + '\n')
+            notasA.append(notas[3][i])
+        arquivo.write("0"*(5 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(renda) + '\n')
+    notasCotistas.append(inscricaoC) #0
+    notasCotistas.append(notasC) #1
+    notasCotistas.append(discursivaC) #2
+    notasNcotistas.append(inscricaoA) #0
+    notasNcotistas.append(notasA) #1
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
@@ -84,13 +91,23 @@ def pegaNome(inscricao, nomeArquivo):
     while(linha != ""):
         if(inscricao in linha):
             posVirgula = linha.index(",")
-            return linha[posVirgula:len(linha) - 1]
+            i = posVirgula + 1
+            nome = ''
+            while(linha[i] != ","):
+                nome += linha[i]
+                i += 1
+            arquivoNome.close()
+            return nome
+        linha = arquivoNome.readline()
+
 def pegaClassificacao(inscricao, nomeArquivo):
     arquivoClassificacao = open(nomeArquivo)
     linha = arquivoClassificacao.readline()
     while(linha != ""):
         if(inscricao in linha):
+            arquivoClassificacao.close()
             return linha[5:9]
+        linha = arquivoClassificacao.readline()
 def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, tipo, posicaoD = 2, posicaoO = 1): #Faz a classificação e já escreve no arquivo 2
     arquivo = open(nomeArquivo, 'w')
     if(tipo == 1):
@@ -118,6 +135,7 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, ti
             objetiva = str(matriz[posicaoO][posicaoCandidato])
             arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + inscricao + "," + objetiva + "," + discursiva + '\n')
         elif(tipo == 2): #Faz a matriz com a classificao (não está em ordem de inscricao)
+            print(pegaNome(inscricao,'arqCandidatos.txt'))
             nome.append(pegaNome(inscricao, 'arqCandidatos.txt'))
             classificacaoInicial.append(pegaClassificacao(inscricao, 'classificacao.txt'))
             classificacaoFinal.append(i)
@@ -146,8 +164,10 @@ nCandidatos = 5 #random.randint(nVagas, 500)
 
 notas = defineNotas(notas, nCandidatos)
 escreveArq1('arqCandidatos.txt', nCandidatos, notasCotistas, notasNcotistas, notas)
+print(notasCotistas)
 defineClassificacao(notas, nCandidatos, 'classificacao.txt', 3, 0, 1)
 matrizCotistas = defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas', 1, 0, 2) #Faz a classificacao Final
+print(matrizCotistas)
 defineClassificacao(matrizCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 3, 3, 3) #Escreve no arquivo em ordem de inscricao
 """
 Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
