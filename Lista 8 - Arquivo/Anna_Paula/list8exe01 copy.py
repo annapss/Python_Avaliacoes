@@ -26,10 +26,10 @@ def nomeAleatorio(nLetras): #Nomes dos candidatos
 def escreveArq1(nomeArquivo, nCandidatos, notasCotistas, notasNcotistas, notas): #Arquivo 1 pronto! :)
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Inscricao,Nome,Renda\n")
-    inscricaoC = []
-    notasC = []
-    notasA = []
-    inscricaoA = []
+    inscricaoC = [-1]
+    notasC = [-1]
+    notasA = [-1]
+    inscricaoA = [-1]
     for i in range(1, nCandidatos + 1):
         renda = random.randint(50000, 500000) / 100
         if(renda <= 1000):
@@ -78,11 +78,32 @@ def empate(maior, matriz, mediaP, discursivaP): #Retorna o número de inscriçã
         copiaMedias[i] = -1
     copiaMedias.clear()
     return posicao
-
-def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, posicaoD = 2, posicaoO = 1): #Faz a classificação e já escreve no arquivo 2
+def pegaNome(inscricao, nomeArquivo):
+    arquivoNome = open(nomeArquivo)
+    linha = arquivoNome.readline()
+    while(linha != ""):
+        if(inscricao in linha):
+            posVirgula = linha.index(",")
+            return linha[posVirgula:len(linha) - 1]
+def pegaClassificacao(inscricao, nomeArquivo):
+    arquivoClassificacao = open(nomeArquivo)
+    linha = arquivoClassificacao.readline()
+    while(linha != ""):
+        if(inscricao in linha):
+            return linha[5:9]
+def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, tipo, posicaoD = 2, posicaoO = 1): #Faz a classificação e já escreve no arquivo 2
     arquivo = open(nomeArquivo, 'w')
-    arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva\n")
+    if(tipo == 1):
+        arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva\n")
+    elif(tipo == 3):
+        arquivo.write("Nome,Classificacao Inicial,Classificacao Final")
     i = 0
+    if(tipo == 2): #Faz a matriz dos cotistas de acordo com a classificacao final
+        matrizCotistas = []
+        nome = [-1]
+        classificacaoInicial = [-1]
+        classificacaoFinal = [-1]
+        numeroInscricao = [-1]
     while(matriz[posicaoM].count(-1) != nCandidatos + 1):
         i += 1
         maiorMedia = max(matriz[posicaoM])
@@ -92,23 +113,42 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, po
         else:
             posicaoCandidato = matriz[posicaoM].index(maiorMedia)
         inscricao = str(matriz[posicaoI][posicaoCandidato])
-        discursiva = str(matriz[posicaoD][posicaoCandidato])
-        objetiva = str(matriz[posicaoO][posicaoCandidato])
-        arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + inscricao + "," + objetiva + "," + discursiva + '\n')
+        if(tipo == 1):
+            discursiva = str(matriz[posicaoD][posicaoCandidato])
+            objetiva = str(matriz[posicaoO][posicaoCandidato])
+            arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + inscricao + "," + objetiva + "," + discursiva + '\n')
+        elif(tipo == 2): #Faz a matriz com a classificao (não está em ordem de inscricao)
+            nome.append(pegaNome(inscricao, 'arqCandidatos.txt'))
+            classificacaoInicial.append(pegaClassificacao(inscricao, 'classificacao.txt'))
+            classificacaoFinal.append(i)
+            numeroInscricao.append(inscricao)
+        elif(tipo == 3):
+            nomeCandidato = str(matriz[0][posicaoCandidato])
+            classInicial = str(matriz[1][posicaoCandidato])
+            classFinal = str(matriz[2][posicaoCandidato])
+            arquivo.write(inscricao + "," + nomeCandidato + "," + "0"*(4 - len(classInicial)) + "," + "0"*(4 - len(classFinal)))
         matriz[posicaoM][posicaoCandidato] = -1
+    if(tipo == 2):
+        matrizCotistas.append(nome) #0
+        matrizCotistas.append(classificacaoInicial) #1
+        matrizCotistas.append(classificacaoFinal) #2
+        matrizCotistas.append(numeroInscricao) #3
+        return matrizCotistas
     arquivo.close()    
 
 
 notas = []
 notasCotistas = [] #Cotistas
 notasNcotistas = [] #Ampla Concorrência
+matrizCotistas = []
 nVagas = random.randint(20, 100)
-nCandidatos = random.randint(nVagas, 500)
+nCandidatos = 5 #random.randint(nVagas, 500)
 
 notas = defineNotas(notas, nCandidatos)
 escreveArq1('arqCandidatos.txt', nCandidatos, notasCotistas, notasNcotistas, notas)
-defineClassificacao(notas, nCandidatos, 'classificacao.txt', 3, 0)
-#defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas', 1, 0, 2)
+defineClassificacao(notas, nCandidatos, 'classificacao.txt', 3, 0, 1)
+matrizCotistas = defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas', 1, 0, 2) #Faz a classificacao Final
+defineClassificacao(matrizCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 3, 3, 3) #Escreve no arquivo em ordem de inscricao
 """
 Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
 de usar o max(), vemos quantas vezes esse valor aparece na coluna das médias usando o count(). Se ele mostrar que tem
