@@ -23,14 +23,12 @@ def nomeAleatorio(nLetras): #Nomes dos candidatos
         else:
             nome += consoantes[random.randint(0, len(consoantes) - 1)]
     return nome
-def escreveArq1(nomeArquivo, nCandidatos, notasCotistas, notasNcotistas, notas): #Arquivo 1 pronto! :)
+def escreveArq1(nomeArquivo, nCandidatos, notasCotistas, inscricoesAmpla, notas): #Arquivo 1 pronto! :)
     arquivo = open(nomeArquivo, 'w')
     arquivo.write("Inscricao,Nome,Renda\n")
     inscricaoC = [-1]
     notasC = [-1]
-    notasA = [-1]
     discursivaC = [-1]
-    inscricaoA = [-1]
     for i in range(1, nCandidatos + 1):
         #Fiz esse if só para terem candidatos cotistas e não cotistas
         if(i % 2 == 0):
@@ -42,14 +40,12 @@ def escreveArq1(nomeArquivo, nCandidatos, notasCotistas, notasNcotistas, notas):
             notasC.append(notas[3][i])
             discursivaC.append(notas[2][i])
         elif(renda > 1000):
-            inscricaoA.append(i)
-            notasA.append(notas[3][i])
+            inscricoesAmpla.append(i)
         arquivo.write("0"*(5 - len(str(i))) + str(i) + ',' + nomeAleatorio(random.randint(4, 10)) + ',R$' + str(renda) + '\n')
     notasCotistas.append(inscricaoC) #0
     notasCotistas.append(notasC) #1
     notasCotistas.append(discursivaC) #2
-    notasNcotistas.append(inscricaoA) #0
-    notasNcotistas.append(notasA) #1
+    #inscricoesAmpla.append(inscricaoA) #0
     arquivo.close()
 
 def defineNotas(notas, nCandidatos): #Definindo as notas dos canditados e colocando em um vetor
@@ -99,21 +95,20 @@ def pegaNome(inscricao, nomeArquivo):
             arquivoNome.close()
             return nome
         linha = arquivoNome.readline()
-
 def pegaClassificacao(inscricao, nomeArquivo):
     arquivoClassificacao = open(nomeArquivo)
     linha = arquivoClassificacao.readline()
     while(linha != ""):
         if(inscricao in linha):
             arquivoClassificacao.close()
-            return linha[5:9]
+            return linha[0:4]
         linha = arquivoClassificacao.readline()
 def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, tipo, posicaoD = 2, posicaoO = 1): #Faz a classificação e já escreve no arquivo 2
     arquivo = open(nomeArquivo, 'w')
     if(tipo == 1):
         arquivo.write("Classificacao,Inscricao,Objetiva,Discursiva\n")
     elif(tipo == 3):
-        arquivo.write("Nome,Classificacao Inicial,Classificacao Final")
+        arquivo.write("Nome,Classificacao Inicial,Classificacao Final\n")
     i = 0
     if(tipo == 2): #Faz a matriz dos cotistas de acordo com a classificacao final
         matrizCotistas = []
@@ -133,18 +128,19 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, ti
         if(tipo == 1):
             discursiva = str(matriz[posicaoD][posicaoCandidato])
             objetiva = str(matriz[posicaoO][posicaoCandidato])
-            arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(4 - len(inscricao)) + inscricao + "," + objetiva + "," + discursiva + '\n')
+            arquivo.write("0"*(4 - len(str(i))) + str(i) + ',' + "0"*(5 - len(inscricao)) + inscricao + "," + objetiva + "," + discursiva + '\n')
         elif(tipo == 2): #Faz a matriz com a classificao (não está em ordem de inscricao)
-            print(pegaNome(inscricao,'arqCandidatos.txt'))
-            nome.append(pegaNome(inscricao, 'arqCandidatos.txt'))
-            classificacaoInicial.append(pegaClassificacao(inscricao, 'classificacao.txt'))
+            parteInscricao = "0"*(5 - len(inscricao))
+            nome.append(pegaNome(parteInscricao + inscricao, 'arqCandidatos.txt'))
+            parteInscricao = "0"*(4 - len(inscricao))
+            classificacaoInicial.append(pegaClassificacao(parteInscricao + inscricao, 'classificacao.txt'))
             classificacaoFinal.append(i)
-            numeroInscricao.append(inscricao)
+            numeroInscricao.append(int(inscricao))
         elif(tipo == 3):
             nomeCandidato = str(matriz[0][posicaoCandidato])
             classInicial = str(matriz[1][posicaoCandidato])
             classFinal = str(matriz[2][posicaoCandidato])
-            arquivo.write(inscricao + "," + nomeCandidato + "," + "0"*(4 - len(classInicial)) + "," + "0"*(4 - len(classFinal)))
+            arquivo.write(inscricao + "," + nomeCandidato + "," + "0"*(4 - len(classInicial)) + classInicial + "," + "0"*(4 - len(classFinal)) + classFinal + "\n")
         matriz[posicaoM][posicaoCandidato] = -1
     if(tipo == 2):
         matrizCotistas.append(nome) #0
@@ -154,21 +150,34 @@ def defineClassificacao(matriz, nCandidatos, nomeArquivo, posicaoM, posicaoI, ti
         return matrizCotistas
     arquivo.close()    
 
+def escreveAmpla(nomeArquivo, vetor):
+    arquivo = open(nomeArquivo, 'w')
+    arquivo.write("Nome,Inscricao,Classificacao Inicial\n")
+    print(vetor)
+    print(len(vetor))
+    for i in range(1,len(vetor) + 1):
+        inscricao = str(vetor[i])
+        parteInscricao = "0"*(5 - len(inscricao))
+        nome = pegaNome(parteInscricao + inscricao, 'arqCandidatos.txt')
+        parteInscricao = "0"*(4 - len(vetor))
+        classificacaoInicial = pegaClassificacao(parteInscricao + inscricao, 'classificacao.txt')
+        print(classificacaoInicial)
+        arquivo.write(nome + "," + parteInscricao + inscricao + "," + "0"*(4 - len(classificacaoInicial)) + classificacaoInicial + '\n')
+    arquivo.close()
 
 notas = []
 notasCotistas = [] #Cotistas
-notasNcotistas = [] #Ampla Concorrência
+inscricoesAmpla = [-1] #Ampla Concorrência
 matrizCotistas = []
 nVagas = random.randint(20, 100)
 nCandidatos = 5 #random.randint(nVagas, 500)
 
 notas = defineNotas(notas, nCandidatos)
-escreveArq1('arqCandidatos.txt', nCandidatos, notasCotistas, notasNcotistas, notas)
-print(notasCotistas)
+escreveArq1('arqCandidatos.txt', nCandidatos, notasCotistas, inscricoesAmpla, notas)
 defineClassificacao(notas, nCandidatos, 'classificacao.txt', 3, 0, 1)
-matrizCotistas = defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas', 1, 0, 2) #Faz a classificacao Final
-print(matrizCotistas)
+matrizCotistas = defineClassificacao(notasCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 1, 0, 2) #Faz a classificacao Final
 defineClassificacao(matrizCotistas, len(notasCotistas), 'classificacaoCotistas.txt', 3, 3, 3) #Escreve no arquivo em ordem de inscricao
+escreveAmpla("ampla.txt", inscricoesAmpla)
 """
 Ideia: usando a função max() podemos achar a maior média na coluna que tem a média na matriz que tem as notas. Depois
 de usar o max(), vemos quantas vezes esse valor aparece na coluna das médias usando o count(). Se ele mostrar que tem
