@@ -1,0 +1,6 @@
+Inscricao,Nome,Renda
+00001,ihoje,R$968.07
+00002,egogede,R$1921.07
+00003,ozipafok,R$941.37
+00004,edumi,R$4255.54
+00005,icebigemex,R$747.45

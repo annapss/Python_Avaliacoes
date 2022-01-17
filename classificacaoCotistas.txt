@@ -1,0 +1,4 @@
+Nome,Classificacao Inicial,Classificacao Final
+icebigemex,0001,0001
+ozipafok,0005,0003
+ihoje,0002,0002
