@@ -16,7 +16,7 @@ def percurso(n, i=0): #função para percorrer o vetor e adicionar as entradas
         return percurso(tam, i + 1)
 percurso(tam)
 passei = []
-def contagem(n, i=0): #função para contar as ocorrências de um dígito
+def contagem(n, i=0):
     if(i == n):
         return False
     else:
