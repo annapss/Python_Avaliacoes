@@ -83,6 +83,17 @@ class ListaEncadeada:
             while (aux.prox != None):
                 aux = aux.prox
         return aux
+    
+    def tamanho(self):
+        aux = self.inicio
+        cont = 0
+        if (aux == None):
+           return 0
+        else:
+            cont += 1
+            aux = aux.prox
+            self.tamanho()
+        return cont
 
     def inserirFim(self, valor):
         aux = self.inicio
