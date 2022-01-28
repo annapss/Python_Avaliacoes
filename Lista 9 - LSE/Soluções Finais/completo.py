@@ -1,3 +1,7 @@
+"""
+Grupo: Anna Paula Siqueira da Silva, Maria Laura Barbosa Soares, Luanda Rodrigues da Silva e Ariane Arantes dos Santos
+Turma: 2BINFO
+"""
 class No:
     def __init__(self, valor):
         self.valor = valor
