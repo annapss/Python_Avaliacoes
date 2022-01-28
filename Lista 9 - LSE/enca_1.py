@@ -19,36 +19,39 @@ class ListaEncadeada:
 
     def criarLSEInversa(self):
         valor = int(input('Entre com um valor: '))
-        if (valor <= 0):
-            return 0
-        else:
+        while(valor>=0):
             self.inserir(valor)
-            self.criarLSEInversa()
+            valor = int(input('Entre com um valor: '))
 
     def mostrar(self):
-        aux = self.inicio
-        if (self.prox == None):
-            print('Lista vazia')
-
-        if (aux == None ):
-            return 0
+        aux= self.inicio
+        print('\nConteúdoda Lista Simplesmente Encadeada:')
+        if(aux==None):
+            print('Lista Vazia!!')
         else:
-            print(aux.valor, end=' ')
-            aux = aux.prox
-            self.inicio = aux
-            self.mostrar()
+            while(aux!= None):
+                print(aux.valor, end=' ')
+                aux= aux.prox
+    
+    def tamanho(self):
+        aux = self.inicio
+        cont = 0
+        while(aux!= None):
+            cont+= 1
+            aux= aux.prox
+        return cont
 
     def maior(self):
-        aux = self.inicio
-        if (aux != None):
+        aux= self.inicio
+        if(aux!=None):
             maior = aux.valor
-            while (aux != None):
-                if (aux.valor > maior):
+            while(aux!= None):
+                if(aux.valor>maior):
                     maior = aux.valor
-                aux = aux.prox
-        else:
-            maior = None
-        return maior
+                    aux= aux.prox
+                else:
+                    maior = None
+                return maior
 
     def menor(self):
         aux = self.inicio
@@ -73,7 +76,7 @@ class ListaEncadeada:
                     aux = aux.prox
                 media /= self.tamanho()
                 return media
-
+    
     def fimLista(self):
         # Vai retornar o endereço do último elemento da lista
         aux = self.inicio
@@ -83,17 +86,6 @@ class ListaEncadeada:
             while (aux.prox != None):
                 aux = aux.prox
         return aux
-    
-    def tamanho(self):
-        aux = self.inicio
-        cont = 0
-        if (aux == None):
-           return 0
-        else:
-            cont += 1
-            aux = aux.prox
-            self.tamanho()
-        return cont
 
     def inserirFim(self, valor):
         aux = self.inicio
@@ -103,10 +95,3 @@ class ListaEncadeada:
             aux = self.fimLista()
             aux.prox = No(valor)
 
-
-
-
-
-lista = ListaEncadeada()
-lista.criarLSEInversa()
-lista.mostrar()
