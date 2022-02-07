@@ -46,7 +46,6 @@ class ListaEncadeada:
             inicio = self.inicio
         aux = inicio
         if (aux == None):
-            #print(f"O tamanho da lista é {self.size}")
             return self.size
         else:
             aux = aux.prox
@@ -206,25 +205,35 @@ class ListaEncadeada:
         else:
             return 0
 
-    def ordenarLSE(self):
-
     def apagarLSE(self):
-        
+        aux = self.inicio
+        while(aux != None):
+            valor = aux.valor
+            aux = aux.prox
+            self.removerElemento(valor)
+    
+    def ordenarLSE(self):
+        aux = self.inicio
+        lista2 = ListaEncadeada()
+        while(aux != None):
+            valor = aux.valor
+            lista2.inserirOrdenado(valor)
+            aux = aux.prox
+        self.apagarLSE()
+        aux = lista2.inicio
+        while(aux != None):
+            valor = aux.valor
+            self.inserirFim(valor)
+            aux = aux.prox
+        self.mostrar()
 
 
 lista = ListaEncadeada()
-lista.criarLSEOrdemDigitada()
-lista.mostrar()
-"""lista.inserirOrdenado(12)
-lista.inserirOrdenado(9)
-lista.inserirOrdenado(3)
-lista.inserirOrdenado(6)
-lista.inserirOrdenado(20)
 lista.criarLSEOrdenada()
-lista.mostrar()
-lista.removerElemento(6)
-lista.mostrar()
-lista.removerElemento(20)
-lista.mostrar()"""
-#lista.inserirOrdenado(6)
-#lista.mostrar()
+valor = int(input("Digite o valor que será inserido na lista ordenada: "))
+lista.inserirOrdenado(valor)
+valor = int(input("Digite o valor que será removido: "))
+lista.removerElemento(valor)
+lista.apagarLSE()
+lista.criarLSEOrdemDigitada()
+lista.ordenarLSE()
