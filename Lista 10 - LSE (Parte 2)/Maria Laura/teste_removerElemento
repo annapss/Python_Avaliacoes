@@ -1,0 +1,33 @@
+    def removerElemento(self, valor, i=0, inicio =0):
+        if (i == 0):
+            inicio = self.inicio
+        aux = inicio
+        if (self.tamanho() == 0):
+            print('Lista Vazia')
+        else:
+            if (self.tamanho() == 1):  # lista só tem 1 valor
+                if (valor != aux.valor):
+                    print('Valor não existe na lista')
+                else:
+                    self.inicio = self.inicio.prox
+                    aux.prox = None
+            else:
+                if (valor == aux.valor):
+                    self.inicio = self.inicio.prox
+                    aux.prox = None
+                else:
+                    maior = inicio
+                    if (maior.valor != valor) and (maior.prox != None):
+                        menor = maior
+                        maior = maior.prox
+                        inicio = maior
+                        self.removerElemento( i + 1, inicio)
+                    else:
+                        if (valor != maior.valor):
+                            print('Valor não existe na lista')
+                        else:
+                            if (maior.prox == None):  # elemento a ser retirado está no fim da LSE
+                                menor.prox = None
+                            else:
+                                menor.prox = maior.prox
+                                maior.prox = None
