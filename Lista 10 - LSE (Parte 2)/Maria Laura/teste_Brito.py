@@ -1,3 +1,4 @@
+#Código do professor
 def inserirOrdenado(self, valor):
     aux = self.inicio
     if (aux==None) or (valor < aux.valor): #lista vazia ou elemento será inserido no inicio da lista

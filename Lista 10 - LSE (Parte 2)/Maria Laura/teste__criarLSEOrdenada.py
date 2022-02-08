@@ -1,3 +1,4 @@
+#Ideia de solução
     def criarLSEOrdenada(self):
         valor = int(input('Entre com um valor: '))
         if (valor >= 0):
