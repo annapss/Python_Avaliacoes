@@ -10,5 +10,69 @@ Turma: 2BINFO
 crescente de valor). LSEC, LDEC, LSED, LDED, LSECD e LDECD.
 4. Criar LSEC, LDEC, LSED, LDED, LSECD e LDECD em ordem crescente de valor
 5. Remover um elemento de uma LSEC, LDEC, LSED, LDED, LSECD e LDECD.
-6. Apagar a lista da mémoriaLSEC, LDEC, LSED, LDED, LSECD e LDECD.
+6. Apagar a lista da mémoria LSEC, LDEC, LSED, LDED, LSECD e LDECD.
 """
+
+class No:
+    def __init__(self, valor):
+        self.valor = valor
+        self.prox = None
+    
+class ListaDuplaDescritor:
+    def __init__(self, quant = 0):
+        self.inicio = None
+        self.fim = None
+        self.quant = quant
+
+    def mostrar(self):
+        aux = self.inicio
+        if(aux == None):
+            print("Lista Vazia!\n")
+        else:
+            while(aux != None):
+                print(aux.valor, end = " ")
+                aux = aux.prox
+
+    def inserirFim(self, valor):
+        item = No(valor)
+        if(self.inicio == None): #Lista vazia
+            self.inicio = item
+            self.fim = item
+        else:
+            self.fim.prox = item
+            self.fim = item
+        self.quant += 1
+
+    def CriarOrdemDigitada(self):
+        valor = int(input("Digite o valor que será inserido: "))
+        while(valor >= 0):
+            self.inserirFim(valor)
+            valor = int(input("Digite o valor que será inserido: "))
+    
+    def inserirInicio(self, valor):
+        item = No(valor)
+        if(self.inicio == None): #Lista vazia
+            self.inicio = item
+            self.fim = item
+        else:
+            item.prox = self.inicio
+            self.inicio = item
+        self.quant += 1
+
+    def CriarInversa(self):
+        valor = int(input("Digite o valor que será inserido: "))
+        while(valor >= 0):
+            self.inserirInicio(valor)
+            valor = int(input("Digite o valor que será inserido: "))
+
+lista = ListaDuplaDescritor()
+lista.CriarInversa()
+lista.mostrar()
+"""lista.inserirFim(9)
+lista.mostrar()
+print()
+lista.inserirFim(6)
+lista.mostrar()
+print()
+lista.inserirFim(3)
+lista.mostrar()"""
