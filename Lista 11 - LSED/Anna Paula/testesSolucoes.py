@@ -65,10 +65,37 @@ class ListaDuplaDescritor:
             self.inserirInicio(valor)
             valor = int(input("Digite o valor que será inserido: "))
 
+    def inserirOrdenado(self, valor):
+        if(self.inicio == None or (valor < self.inicio.valor)):
+            self.inserirInicio(valor)
+        else:
+            if(valor > self.fim.valor):
+                self.inserirFim(valor)
+            else:
+                maior = self.inicio
+                while(maior.valor < valor and maior.prox != None):
+                    menor = maior
+                    maior = maior.prox
+                if(valor < maior.valor):
+                    menor.prox = No(valor)
+                    menor.prox.prox = maior
+        self.quant += 1
+    
+    def CriarCrescente(self):
+        valor = int(input("Digite o valor que será inserido: "))
+        while(valor >= 0):
+            self.inserirOrdenado(valor)
+            valor = int(input("Digite o valor que será inserido: "))
+
 lista = ListaDuplaDescritor()
-lista.CriarInversa()
+lista.CriarCrescente()
 lista.mostrar()
-"""lista.inserirFim(9)
+"""lista.inserirOrdenado(9)
+lista.inserirOrdenado(3)
+lista.inserirOrdenado(10)
+lista.inserirOrdenado(6)
+lista.mostrar()
+lista.inserirFim(9)
 lista.mostrar()
 print()
 lista.inserirFim(6)
