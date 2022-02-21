@@ -87,8 +87,54 @@ class ListaDuplaDescritor:
             self.inserirOrdenado(valor)
             valor = int(input("Digite o valor que será inserido: "))
 
+    def remover(self, valor):
+        aux = self.inicio
+        if(self.quant == 0):
+            print("Lista vazia")
+        else:
+            if(self.quant == 1):
+                if(valor != aux.valor):
+                    print("Esse valor não está na lista")
+                else:
+                    self.inicio = None
+                    self.fim = None
+                    self.quant -= 1
+            else:
+                if(valor == aux.valor):
+                    self.inicio = self.inicio.prox
+                    aux.prox = None
+                else:
+                    maior = self.inicio
+                    while((maior.valor != valor) and (maior.prox != None)):
+                        menor = maior
+                        maior = maior.prox
+                    if(valor != maior.valor):
+                        print("Esse valor não está na lista")
+                    else:
+                        if(maior.prox == None):
+                            menor.prox = None
+                            self.fim = menor
+                        else:
+                            menor.prox = maior.prox
+                            maior.prox = None
+                        self.quant -= 1
+    
+    def apagarLSED(self):
+        aux = self.inicio
+        while(aux != None):
+            valor = aux.valor
+            aux = aux.prox
+            self.remover(valor)
+            self.quant -= 1
+
+
 lista = ListaDuplaDescritor()
-lista.CriarCrescente()
+lista.CriarOrdemDigitada()
+lista.mostrar()
+print()
+lista.apagarLSED()
+#valor = input("Digite o valor que você quer remover: ")
+#lista.remover(valor)
 lista.mostrar()
 """lista.inserirOrdenado(9)
 lista.inserirOrdenado(3)
