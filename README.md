@@ -1,5 +1,5 @@
 # Python_Avaliacoes
-Repositório destinado as soluções das avaliações de Algoritmos Computacionais e Estrutura de dados
+Repositório destinado as soluções das avaliações de Algoritmos Computacionais e Estrutura de Dados. Esta disciplina foi cursada durante o Técnico de Informática do CEFET/RJ
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="70" weight="70"/>
 
